@@ -1,0 +1,29 @@
+{
+  "meta": {
+    "title": "Compact Sidebar",
+    "description": "Compact sidebar navigation with project spacing, session density, collapse-all and update-entry controls."
+  },
+  "menuLabel": "Other panels",
+  "more": "More",
+  "collapseAll": "Collapse all workspace sessions",
+  "collapseSetting": "Click Workspaces heading to collapse all",
+  "collapseDescription": "Collapse every project’s session list by clicking Workspaces. Individual projects can still be expanded.",
+  "densityHeading": "List display",
+  "projectSpacingSetting": "Project spacing",
+  "projectSpacingDescription": "Adjust the space between projects while keeping project titles at their original size.",
+  "sessionDensitySetting": "Session density",
+  "sessionDensityDescription": "Adjust session title size, line height and spacing together. Icons and times keep their original size.",
+  "densityHint": "Enable the matching override to apply its preset. Turn it off or choose Standard to restore the theme.",
+  "density.standard": "Standard",
+  "density.medium": "Moderate",
+  "density.compact": "Compact",
+  "navigationSetting": "Compact panel navigation",
+  "navigationDescription": "Move panels other than Marketplace into More. Turn off to use native theme navigation.",
+  "projectEnabledSetting": "Override project spacing",
+  "projectEnabledDescription": "Apply the project spacing preset only while enabled. Turn off to restore the theme.",
+  "sessionEnabledSetting": "Override session density",
+  "sessionEnabledDescription": "Apply session title size, line height and spacing only while enabled. Turn off to restore the theme.",
+  "hideUpdateSetting": "Hide new version button",
+  "hideUpdateDescription": "Hide only the sidebar update entry. The host still manages update checks and installation.",
+  "settingsHint": "Sidebar adjustments default to off. Enable each as needed to reduce theme conflicts. Saved in this browser; existing explicit choices are retained."
+}

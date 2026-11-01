@@ -1,0 +1,29 @@
+{
+  "meta": {
+    "title": "侧边栏精简",
+    "description": "精简侧边栏导航，调整项目间距与会话密度，可收起全部会话并控制新版本入口。"
+  },
+  "menuLabel": "其他面板",
+  "more": "更多",
+  "collapseAll": "收起所有项目的会话",
+  "collapseSetting": "点击工作区标题收起全部",
+  "collapseDescription": "点击“工作区”收起所有项目的会话列表，之后仍可逐个展开。",
+  "densityHeading": "列表显示",
+  "projectSpacingSetting": "项目间距",
+  "projectSpacingDescription": "调整项目之间的垂直距离，项目名称保持原字号。",
+  "sessionDensitySetting": "会话密度",
+  "sessionDensityDescription": "联动调整会话字号、行高与间距，图标和时间保持原样。",
+  "densityHint": "开启对应覆盖开关后应用所选档位；关闭开关或选择“标准”恢复主题原样。",
+  "density.standard": "标准",
+  "density.medium": "适中",
+  "density.compact": "紧凑",
+  "navigationSetting": "精简面板导航",
+  "navigationDescription": "将插件市场以外的面板移入“更多”；关闭时沿用主题的原生导航。",
+  "projectEnabledSetting": "覆盖项目间距",
+  "projectEnabledDescription": "开启后才应用下方的项目间距；关闭时恢复主题原样。",
+  "sessionEnabledSetting": "覆盖会话密度",
+  "sessionEnabledDescription": "开启后才应用下方的会话字号、行高和间距；关闭时恢复主题原样。",
+  "hideUpdateSetting": "隐藏新版本按钮",
+  "hideUpdateDescription": "仅隐藏侧边栏更新入口，检查和安装更新仍由宿主管理。",
+  "settingsHint": "侧边栏调整默认关闭，按需独立开启以减少与其他主题的冲突。设置保存在当前浏览器，已有明确选择会保留。"
+}

@@ -1,0 +1,54 @@
+{
+  "name": "@112chlorine/dsh-sidebar-compact",
+  "version": "1.3.1",
+  "type": "module",
+  "description": "Compact sidebar navigation with independent project spacing and session density presets, collapse-all, and update-entry controls.",
+  "license": "MIT",
+  "exports": {
+    ".": "./index.js",
+    "./client": "./client.js",
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg"
+  },
+  "files": [
+    "index.js",
+    "client.js",
+    "cordis.patch.yml",
+    "locale/*.json",
+    "icon.svg",
+    "README.md",
+    "LICENSE",
+    "verify.mjs"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-sidebar"
+      ]
+    }
+  },
+  "scripts": {
+    "test": "node --check client.js && node --check index.js && node verify.mjs"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Chroline112/dsh-sidebar-compact.git"
+  },
+  "homepage": "https://github.com/Chroline112/dsh-sidebar-compact#readme",
+  "bugs": {
+    "url": "https://github.com/Chroline112/dsh-sidebar-compact/issues"
+  },
+  "keywords": [
+    "dsh-plugin",
+    "deepseek-harness"
+  ]
+}
