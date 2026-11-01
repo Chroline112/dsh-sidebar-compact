@@ -5,18 +5,18 @@
 In DSH's Add Plugin dialog, select the official npm registry and enter:
 
 ```text
-@112chlorine/dsh-sidebar-compact
+dsh-sidebar-compact
 ```
 
 GitHub source: https://github.com/Chroline112/dsh-sidebar-compact
 
 
-版本：`1.3.1`。面向 DSH `0.2.1-rc.2` / `0.2.1-rc.3` 的原生侧边栏，按宿主实际提供的插槽选择菜单实现。当前机器为 rc.2；rc.3 分支通过接口模拟验证，尚未在另一台电脑或其他操作系统上实测。
+版本：`1.3.2`。面向 DSH `0.2.1-rc.2` / `0.2.1-rc.3` 的原生侧边栏，按宿主实际提供的插槽选择菜单实现。当前机器为 rc.2；rc.3 分支通过接口模拟验证，尚未在另一台电脑或其他操作系统上实测。
 
 ## 在其他电脑安装
 
-1. 将 `112chlorine-dsh-sidebar-compact-1.3.1.tgz` 复制到目标电脑的固定目录。它是完整 npm 安装包，直接安装，无需解压或复制本机的 node_modules。
-2. 在目标电脑的 DSH 中，让助手使用插件管理工具安装该文件的完整本地路径。例如：「安装本地插件 D:/Downloads/112chlorine-dsh-sidebar-compact-1.3.1.tgz」。macOS / Linux 使用对应的绝对路径。
+1. 将 `dsh-sidebar-compact-1.3.2.tgz` 复制到目标电脑的固定目录。它是完整 npm 安装包，直接安装，无需解压或复制本机的 node_modules。
+2. 在目标电脑的 DSH 中，让助手使用插件管理工具安装该文件的完整本地路径。例如：「安装本地插件 D:/Downloads/dsh-sidebar-compact-1.3.2.tgz」。macOS / Linux 使用对应的绝对路径。
 3. 已装旧版时按插件管理工具的升级提示操作；若提示包已存在，先通过插件管理卸载旧包，再安装新包。
 4. 根据安装结果刷新页面或重启 DSH，进入「插件 → 侧边栏精简」逐项开启需要的功能。
 
@@ -65,7 +65,7 @@ GitHub source: https://github.com/Chroline112/dsh-sidebar-compact
 - `dsh.sidebar-compact.project-enabled.v1`
 - `dsh.sidebar-compact.session-enabled.v1`
 
-包名为 `@112chlorine/dsh-sidebar-compact`，Loader 条目为 `sidebar-compact`。没有外部运行依赖、安装脚本或额外构建步骤。rc.2 使用插件提供的“更多”菜单，宿主存在原生更多菜单时沿用对应插槽。标题收起按钮与旧版菜单使用 CSS Anchor Positioning；缺少该能力时使用侧边栏底部入口。
+包名为 `dsh-sidebar-compact`，Loader 条目为 `sidebar-compact`。没有外部运行依赖、安装脚本或额外构建步骤。rc.2 使用插件提供的“更多”菜单，宿主存在原生更多菜单时沿用对应插槽。标题收起按钮与旧版菜单使用 CSS Anchor Positioning；缺少该能力时使用侧边栏底部入口。
 
 精简导航关闭时不会读取主题的面板接口，也不会注册导航样式与“更多”菜单。开启时如主题未提供原生面板接口，仅跳过导航功能并在控制台提示，其他开关仍独立工作。关闭导航会立即撤下该功能的注册；停用插件会清理插件样式、菜单、控件与监听。
 

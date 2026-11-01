@@ -1,4 +1,4 @@
 - insert:
     - id: sidebar-compact
-      name: '@112chlorine/dsh-sidebar-compact'
+      name: 'dsh-sidebar-compact'
       config: {}

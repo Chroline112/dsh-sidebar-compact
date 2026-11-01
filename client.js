@@ -1,5 +1,5 @@
 window.__ModuleLoader__.load({
-  id: '@112chlorine/dsh-sidebar-compact',
+  id: 'dsh-sidebar-compact',
   factory(require) {
     const React = require('react');
     const h = React.createElement;
@@ -621,7 +621,7 @@ window.__ModuleLoader__.load({
           return () => window.removeEventListener('storage', onStorage);
         });
         ctx.slots.inject('plugins.bundle.config', () => ctx.slots.register({
-          name: 'plugins.bundle.config', key: '@112chlorine/dsh-sidebar-compact',
+          name: 'plugins.bundle.config', key: 'dsh-sidebar-compact',
           registrant: 'sidebar-compact', locale: 'sidebar-compact',
           inject: () => ({
             hooks: {

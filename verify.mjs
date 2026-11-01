@@ -6,8 +6,8 @@ import { fileURLToPath } from 'node:url';
 
 const root = path.dirname(fileURLToPath(import.meta.url));
 const manifest = JSON.parse(readFileSync(path.join(root, 'package.json'), 'utf8'));
-assert.equal(manifest.name, '@112chlorine/dsh-sidebar-compact');
-assert.equal(manifest.version, '1.3.1');
+assert.equal(manifest.name, 'dsh-sidebar-compact');
+assert.equal(manifest.version, '1.3.2');
 for (const entry of ['index.js', 'client.js', 'cordis.patch.yml', 'icon.svg', 'LICENSE', 'README.md']) {
   assert.ok(existsSync(path.join(root, entry)), `missing ${entry}`);
 }
@@ -143,7 +143,7 @@ function verifyNavigation(mode) {
     },
   });
   assert.equal(reads, 0, 'disabled navigation must never access a theme panel source');
-  const config = active.get('@112chlorine/dsh-sidebar-compact').inject();
+  const config = active.get('dsh-sidebar-compact').inject();
   config.setNavigationEnabled(true);
   const available = mode === 'legacy' || mode === 'modern';
   assert.equal(active.has('compact-panel-styles'), available);
