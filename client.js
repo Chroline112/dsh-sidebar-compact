@@ -396,10 +396,26 @@ window.__ModuleLoader__.load({
       );
     }
 
+    const workspaceExpansionSnapshots = new WeakMap();
+
     function collapseWorkspaceGroups(view, workspaceIds) {
       const state = view.getSnapshot();
       if (state.groupBy === 'flat') return;
+      const saved = workspaceExpansionSnapshots.get(view);
+      if (saved?.groupBy === state.groupBy) {
+        for (const [key, expanded] of saved.expansion) {
+          if ((state.groupExpansion[key] !== false) !== expanded) {
+            view.actions.setGroupExpanded(key, expanded);
+          }
+        }
+        workspaceExpansionSnapshots.delete(view);
+        return;
+      }
       const keys = new Set(['', ...workspaceIds, ...Object.keys(state.groupExpansion)]);
+      workspaceExpansionSnapshots.set(view, {
+        groupBy: state.groupBy,
+        expansion: new Map([...keys].map(key => [key, state.groupExpansion[key] !== false])),
+      });
       for (const key of keys) {
         if (state.groupExpansion[key] !== false) view.actions.setGroupExpanded(key, false);
       }
@@ -551,9 +567,9 @@ window.__ModuleLoader__.load({
           en: {
             "menuLabel": "Other panels",
             "more": "More",
-            "collapseAll": "Collapse all workspace sessions",
-            "collapseSetting": "Click Workspaces heading to collapse all",
-            "collapseDescription": "Collapse every project’s session list by clicking Workspaces. Individual projects can still be expanded.",
+            "collapseAll": "Collapse / restore workspace sessions",
+            "collapseSetting": "Click Workspaces heading to collapse / restore",
+            "collapseDescription": "Click Workspaces to collapse all project session lists; click again to restore their previous expanded states.",
             "densityHeading": "List display",
             "projectSpacingSetting": "Project spacing",
             "projectSpacingDescription": "Adjust the space between projects while keeping project titles at their original size.",
@@ -576,9 +592,9 @@ window.__ModuleLoader__.load({
           zh: {
             "menuLabel": "其他面板",
             "more": "更多",
-            "collapseAll": "收起所有项目的会话",
-            "collapseSetting": "点击工作区标题收起全部",
-            "collapseDescription": "点击“工作区”收起所有项目的会话列表，之后仍可逐个展开。",
+            "collapseAll": "收起 / 恢复项目会话",
+            "collapseSetting": "点击工作区标题收起 / 恢复",
+            "collapseDescription": "点击“工作区”收起 / 恢复项目会话列表，之后仍可逐个展开。",
             "densityHeading": "列表显示",
             "projectSpacingSetting": "项目间距",
             "projectSpacingDescription": "调整项目之间的垂直距离，项目名称保持原字号。",

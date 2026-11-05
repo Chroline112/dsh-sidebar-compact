@@ -7,7 +7,7 @@ import { fileURLToPath } from 'node:url';
 const root = path.dirname(fileURLToPath(import.meta.url));
 const manifest = JSON.parse(readFileSync(path.join(root, 'package.json'), 'utf8'));
 assert.equal(manifest.name, 'dsh-sidebar-compact');
-assert.equal(manifest.version, '1.3.2');
+assert.equal(manifest.version, '1.3.3');
 for (const entry of ['index.js', 'client.js', 'cordis.patch.yml', 'icon.svg', 'LICENSE', 'README.md']) {
   assert.ok(existsSync(path.join(root, entry)), `missing ${entry}`);
 }
@@ -109,6 +109,34 @@ assert.equal(api.NavigationFeature({ useNavigationEnabled: hook(false), componen
 assert.equal(api.NavigationFeature({ useNavigationEnabled: hook(true), component }).type, component);
 assert.equal(api.UpdateVisibilityStyles({ useUpdateVisible: hook(true) }), null);
 assert.equal(api.UpdateVisibilityStyles({ useUpdateVisible: hook(false) }).type, 'style');
+// Restore mixed expansion states, including groups expanded by default.
+let workspaceState = { groupBy: 'workspace', groupExpansion: { a: true, b: false } };
+const workspaceView = {
+  getSnapshot: () => workspaceState,
+  actions: { setGroupExpanded(key, expanded) {
+    workspaceState = { ...workspaceState, groupExpansion: { ...workspaceState.groupExpansion, [key]: expanded } };
+  } },
+};
+api.collapseWorkspaceGroups(workspaceView, ['a', 'b', 'c']);
+for (const key of ['', 'a', 'b', 'c']) assert.equal(workspaceState.groupExpansion[key], false);
+workspaceView.actions.setGroupExpanded('b', true);
+workspaceView.actions.setGroupExpanded('new', true);
+api.collapseWorkspaceGroups(workspaceView, ['a', 'b', 'c', 'new']);
+assert.equal(workspaceState.groupExpansion.a, true);
+assert.equal(workspaceState.groupExpansion.b, false, 'originally closed project stays closed');
+assert.equal(workspaceState.groupExpansion.c, true, 'implicit expanded state is restored');
+assert.equal(workspaceState.groupExpansion[''], true);
+assert.equal(workspaceState.groupExpansion.new, true, 'new project retains current state');
+api.collapseWorkspaceGroups(workspaceView, ['a', 'b', 'c', 'new']);
+api.collapseWorkspaceGroups(workspaceView, ['a', 'b', 'c', 'new']);
+assert.equal(workspaceState.groupExpansion.b, false, 'repeated cycles retain mixed states');
+workspaceState = { groupBy: 'flat', groupExpansion: {} };
+api.collapseWorkspaceGroups(workspaceView, ['a']);
+assert.deepEqual(workspaceState.groupExpansion, {}, 'flat view remains unchanged');
+workspaceState = { groupBy: 'workspace', groupExpansion: { a: false, b: false, '': false } };
+api.collapseWorkspaceGroups(workspaceView, ['a', 'b']);
+api.collapseWorkspaceGroups(workspaceView, ['a', 'b']);
+assert.equal(workspaceState.groupExpansion.a, false, 'all-closed state remains closed');
 // Simulate slot lifecycles for both native sidebar generations and replaced themes.
 window.addEventListener = () => {};
 window.removeEventListener = () => {};
